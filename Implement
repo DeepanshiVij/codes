@@ -1,0 +1,105 @@
+import java.util.*;
+class Node
+{  private int info;
+   private int priority;
+   private Node next;
+   public Node()
+   {  info=0;
+      priority=0;
+      next=null;
+   }
+   public Node(int in,int p)
+   {   info=in;
+       priority=p;
+       next=null;
+   }
+   public int returnp()
+   {   return priority;
+   }
+   public void setnext (Node y)
+   {   next=y;
+   }
+   public Node returnnext()
+   {   return next;
+   }
+   public int returninfo()
+   {   return info;
+    }
+}
+class Pqueue
+{   Node front,rear;
+    public Pqueue()
+    {  front=rear=null;
+    }
+    public void push (int in,int p)
+    {  Node newnode=new Node (in,p);
+       Node temp=new Node();
+       if (front==null)
+       {   front=newnode;
+           rear=newnode;
+       }
+       else if ((front.returnp())>(newnode.returnp()))
+       {   newnode.setnext(front);
+           front=newnode;
+       }
+       else
+       {    temp=front;
+            while (temp.returnnext()!=null&&temp.returnnext().returnp()<newnode.returnp())
+                  temp=temp.returnnext();
+            newnode.setnext(temp.returnnext());
+            temp.setnext(newnode);
+        }
+    }
+    public void pop()
+    {  if (front==null)
+           System.out.println("Underflow");
+       else
+       {   System.out.println("Info = "+front.returninfo());
+           System.out.println("Priority = "+front.returnp());
+           if (front==rear)
+              front=rear=null;
+           else
+              front=front.returnnext();
+       }
+    }
+    public void display()
+    {  Node temp=new Node();
+       if (front==null)
+          System.out.println("Underflow");
+       else
+       {  temp=front;
+          while (temp!=null)
+          {  System.out.println("Info = "+temp.returninfo());
+             System.out.println("Priority = "+temp.returnp());
+             temp=temp.returnnext();
+           }
+        }
+     }
+}
+class Implement
+{   public static void main (String args[])
+    {   Pqueue pq=new Pqueue();
+        int ans,in,p;
+        Scanner myobj=new Scanner (System.in);
+        do
+        {  System.out.println("1.Push 2.Pop 3.Display 4.Exit");
+           System.out.println("Enter choice = ");
+           ans=myobj.nextInt();
+           switch (ans)
+           {   case 1 : System.out.println("Enter info = ");
+                        in=myobj.nextInt();
+                        System.out.println("Enter priority = ");
+                        p=myobj.nextInt();
+                        pq.push(in,p);
+                        break;
+               case 2 : pq.pop();
+                        break;
+               case 3 : pq.display();
+                        break;
+               case 4 : System.out.println("Terminating...");
+                        break;
+               default: System.out.println("Wrong Choice");
+            }
+        }while(ans!=4);
+     }
+}

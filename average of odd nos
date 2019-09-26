@@ -1,0 +1,100 @@
+//Average of odd nos in a linked list
+import java.util.*;
+class Node
+{  private int info;
+   private Node next;
+   public Node()
+   {  next=null;
+   }
+   public Node(int x)
+   {   info=x;
+       next=null;
+   }
+   public void setnext (Node y)
+   {   next=y;
+   }
+   public void setinfo(int x)
+   {   info=x;
+   }
+   public Node returnnext()
+   {   return next;
+   }
+   public int returninfo()
+   {   return info;
+    }
+}
+class Func
+{   Node start,last;
+    public Func()
+    {  start=last=null;
+    }
+    public void insert (int x)
+    {  Node newnode=new Node (x);
+       if (start==null)
+       {   start=newnode;
+           last=newnode;
+       }
+       else
+       {   last.setnext(newnode);
+           last=newnode;  
+       }
+    }
+    public void display()
+    {  Node temp=new Node();
+       if (start==null)
+          System.out.println("Underflow");
+       else
+       {  temp=start;
+          while (temp!=null)
+          {  System.out.println("Info = "+temp.returninfo());
+             temp=temp.returnnext();
+           }
+        }
+     }
+     public void findsum()
+     {  Node temp=new Node();
+        float avg,m;
+        avg=0;
+        int i=0;
+        if (start==null)
+            System.out.println("Underflow");
+        else
+        {   temp=start;
+            while (temp!=null)
+            {  m=temp.returninfo();
+               if (m%2==1)
+               {   avg+=m;
+                   i++;
+               }
+               temp=temp.returnnext();
+            }
+            System.out.println("Average="+(avg/i));
+            return;
+        }
+     }
+}
+class Implement
+{   public static void main (String args[])
+    {   Func f=new Func();
+        int ans,x;
+        Scanner myobj=new Scanner (System.in);
+        do
+        {  System.out.println("1.Push 2.Display 3.Average of odd 4.Exit");
+           System.out.println("Enter choice = ");
+           ans=myobj.nextInt();
+           switch (ans)
+           {   case 1 : System.out.println("Enter info = ");
+                        x=myobj.nextInt();
+                        f.insert(x);
+                        break;
+               case 2 : f.display();
+                        break;
+               case 3 : f.findsum();
+                        break;
+               case 4 : System.out.println("Terminating...");
+                        break;
+               default: System.out.println("Wrong Choice");
+            }
+        }while(ans!=4);
+     }
+}

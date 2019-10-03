@@ -1,0 +1,189 @@
+//Insertion and display both ways in doubly linked list
+import java.util.*;
+class Node
+{  private int info;
+   private Node prev;
+   private Node next;
+   public Node()
+   {  next=null;
+      prev=null;
+   }
+   public Node (int x)
+   {  next=null;
+      prev=null;
+      info=x;
+   }
+   public void setinfo (int x)
+   {  info=x;
+   }
+   public void setprev (Node x)
+   {  prev=x;
+   }
+   public void setnext (Node x)
+   {  next=x;
+   }
+   public int getinfo()
+   {  return info;
+   }
+   public Node getnext()
+   {  return next;
+   }
+   public Node getprev()
+   {   return prev;
+   }
+}
+class List
+{  private Node start,last;
+   public List()
+   {  start=null;
+      last=null;
+   }
+   public void insert_start (int x)
+   {  Node newnode=new Node(x);
+      if (start==null)
+      {  start=newnode;
+         last=newnode;
+      }
+      else
+      {  start.setprev(newnode);
+         newnode.setnext(start);
+         start=newnode;
+      }
+   }
+   public void insert_last (int x)
+   {  Node newnode=new Node(x);
+      if (start==null)
+      {  start=newnode;
+         last=newnode;
+      }
+      else
+      {  last.setnext(newnode);
+         newnode.setprev(last);
+         last=newnode;
+      }
+   }
+   public void insert_before (int x,int y)
+   {  Node newnode=new Node(x);
+      Node temp=new Node();
+      if (start==null)
+      {  System.out.println("Not possible");
+      }
+      else if (start.getinfo()==y)
+      {   start.setprev(newnode);
+          newnode.setnext(start);
+          start=newnode;
+      }
+      else
+      {   temp=start;
+          while (temp!=null&&temp.getnext().getinfo()!=y)
+           {       temp=temp.getnext();
+                   if (temp.getnext()==last)
+                       break;
+          }
+           if (temp.getnext()==last)
+               System.out.println("Element not found");
+          else
+          {    newnode.setprev(temp);
+               newnode.setnext(temp.getnext());
+               temp.getnext().setprev(newnode);
+               temp.setnext(newnode);
+          }
+      }
+   }
+   public void insert_after (int x,int y)
+   {  Node newnode=new Node(x);
+      Node temp=new Node();
+      if (start==null)
+      {  System.out.println("Not possible");
+      }
+      else if (last.getinfo()==y)
+      {   last.setnext(newnode);
+          newnode.setprev(last);
+          last=newnode;
+      }
+      else
+      {   temp=start;
+          while (temp!=null&&temp.getinfo()!=y)
+                  temp=temp.getnext();
+           if (temp==null)
+               System.out.println("Element not found");
+          else
+          {    newnode.setprev(temp);
+               newnode.setnext(temp.getnext());
+               temp.getnext().setprev(newnode);
+               temp.setnext(newnode);
+          }
+      }
+   }
+   void display_front()
+   {  Node temp=new Node();
+      if (start==null)
+          System.out.println("Underflow");
+      else
+      {  temp=start;
+         while (temp!=null)
+         {  System.out.println(temp.getinfo());
+            temp=temp.getnext();
+         }
+      }
+   }
+   void display_back()
+   {  Node temp=new Node();
+      if (start==null)
+          System.out.println("Underflow");
+      else
+      {  temp=last;
+         while (temp!=null)
+         {  System.out.println(temp.getinfo());
+            temp=temp.getprev();
+         }
+      }
+   }
+}
+class Implement
+{   public static void main(String args[])
+    {  List l=new List();
+       Scanner obj=new Scanner (System.in);
+       int ans,x,y;
+       do
+       {  System.out.println("1.Insert at start");
+          System.out.println("2.Insert at last");
+          System.out.println("3.Insert before");
+          System.out.println("4.Insert after");
+          System.out.println("5.Display from front");
+          System.out.println("6.Display from back");
+          System.out.println("7.Exit");
+          System.out.println("Enter your choice (1-7) = ");
+          ans=obj.nextInt();
+          switch (ans)
+          {  case 1 : System.out.println("Enter x = ");
+                         x=obj.nextInt();
+                         l.insert_start(x);
+                         break;
+             case 2 : System.out.println("Enter x = ");
+                         x=obj.nextInt();
+                         l.insert_last(x);
+                         break;
+             case 3 : System.out.println("Enter x = ");
+                         x=obj.nextInt();
+                         System.out.println("before = ");
+                          y=obj.nextInt();
+                         l.insert_before(x,y);
+                         break;
+             case 4 : System.out.println("Enter x = ");
+                         x=obj.nextInt();
+                         System.out.println("after = ");
+                          y=obj.nextInt();
+                         l.insert_after(x,y);
+                         break;
+             case 5 : l.display_front();
+                         break;
+             case 6 : l.display_back();
+                         break;
+             case 7 : System.out.println("Terminating...");
+                         break;
+             default: System.out.println("Wrong Choice");
+          }
+       }while (ans!=7);
+    } 
+}

@@ -1,0 +1,105 @@
+//Insertion and display both ways in doubly linked list
+import java.util.*;
+class Node
+{  private int info;
+   private Node prev;
+   private Node next;
+   public Node()
+   {  next=null;
+      prev=null;
+   }
+   public Node (int x)
+   {  next=null;
+      prev=null;
+      info=x;
+   }
+   public void setinfo (int x)
+   {  info=x;
+   }
+   public void setprev (Node x)
+   {  prev=x;
+   }
+   public void setnext (Node x)
+   {  next=x;
+   }
+   public int getinfo()
+   {  return info;
+   }
+   public Node getnext()
+   {  return next;
+   }
+   public Node getprev()
+   {   return prev;
+   }
+}
+class List
+{  private Node start,last;
+   public List()
+   {  start=null;
+      last=null;
+   }
+   public void insert (int x)
+   {  Node newnode=new Node(x);
+      if (start==null)
+      {  start=newnode;
+         last=newnode;
+      }
+      else
+      {  start.setprev(newnode);
+         newnode.setnext(start);
+         start=newnode;
+      }
+   }
+   void display_front()
+   {  Node temp=new Node();
+      if (start==null)
+          System.out.println("Underflow");
+      else
+      {  temp=start;
+         while (temp!=null)
+         {  System.out.println(temp.getinfo());
+            temp=temp.getnext();
+         }
+      }
+   }
+   void display_back()
+   {  Node temp=new Node();
+      if (start==null)
+          System.out.println("Underflow");
+      else
+      {  temp=last;
+         while (temp!=null)
+         {  System.out.println(temp.getinfo());
+            temp=temp.getprev();
+         }
+      }
+   }
+}
+class Implement
+{   public static void main(String args[])
+    {  List l=new List();
+       Scanner obj=new Scanner (System.in);
+       int ans,x;
+       do
+       {  System.out.println("1.Insert");
+          System.out.println("2.Display from front");
+          System.out.println("3.Display from back");
+          System.out.println("4.Exit");
+          System.out.println("Enter your choice (1-4) = ");
+          ans=obj.nextInt();
+          switch (ans)
+          {  case 1 : System.out.println("Enter x = ");
+                      x=obj.nextInt();
+                      l.insert(x);
+                      break;
+             case 2 : l.display_front();
+                      break;
+             case 3 : l.display_back();
+                      break;
+             case 4 : System.out.println("Terminating...");
+                      break;
+             default: System.out.println("Wrong Choice");
+          }
+       }while (ans!=4);
+    } 
+}

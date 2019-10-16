@@ -1,0 +1,33 @@
+import java.util.*;
+class Prac
+{   int sumNumbers (String str)
+     {   int i,j,sum,count;
+          j=str.length();
+          String temp="";
+          sum=0;
+          for (i=0;i<j;i++)
+          {   if (Character.isDigit(str.charAt(i)))
+               {   if (i<j-1&&Character.isDigit(str.charAt(i+1)))
+                        temp+=str.charAt(i);
+                    else
+                    {   temp+=str.charAt(i);
+                         sum+=Integer.parseInt(temp);
+                         temp="";
+                     }
+                }
+          }
+          return sum;
+      }
+}
+class Tstr
+{    public static void main (String args[])
+      {   Scanner input=new Scanner (System.in);
+           String str=new String();
+           int s;
+           Prac p=new Prac();
+           System.out.print("Enter string : ");
+           str=input.nextLine();
+           s=p.sumNumbers(str);
+           System.out.println(s);
+       }
+}

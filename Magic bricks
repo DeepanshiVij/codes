@@ -1,0 +1,37 @@
+import java.util.*;
+class Row
+{   boolean check (int g,int s,int b)
+    {   if (g<=((b*5)+s)&&(g%5<=s)&&(g/5<=b))
+            return (true);
+        else
+           return (false);
+     }
+     void convert (int g)
+     {   int r,s;
+         r=g/5;
+         s=g%5;
+         System.out.println("No of big bricks used = "+r);
+         System.out.println("No of small bricks used = "+s);
+      }
+}
+class Goal
+{   public static void main (String args[])
+    {  Row r=new Row();
+       boolean flag;
+       int small,big,goal;
+       Scanner input=new Scanner (System.in);
+       System.out.print("Enter no of small bricks available = ");
+       small=input.nextInt();
+       System.out.print("Enter no of small bricks available = ");
+       big=input.nextInt();
+       System.out.print("Enter the size of the row = ");
+       goal=input.nextInt();
+       flag=r.check(goal,small,big);
+       if (flag==false)
+           System.out.println("Not Possible");
+       else
+       {   System.out.println("Possible");
+           r.convert(goal);
+       }
+    }
+}

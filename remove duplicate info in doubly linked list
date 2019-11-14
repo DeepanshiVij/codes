@@ -1,0 +1,118 @@
+import java.util.*;
+class Node
+{ private int info;
+  private Node next;
+  private Node prev;
+  Node (int in)
+  {  info=in;
+     prev=null;
+     next=null;
+  }
+  Node()
+  {  prev=null;
+     next=null;
+  }
+  int getinfo()
+  {  return info;
+  }
+  Node getprev()
+  {  return prev;
+  }
+  Node getnext()
+  {  return next;
+  }
+  void setinfo (int in)
+  {  info=in;
+  }
+  void setprev (Node y)
+  {  prev=y;
+  }
+  void setnext (Node y)
+  {  next=y;
+  }
+}
+class List
+{  private Node start,last;
+   List()
+   {  start=null;
+      last=null;
+   }
+   void push (int in)
+   {  Node newnode=new Node (in);
+      if (start==null)
+      {  start=newnode;
+         last=newnode;
+      }
+      else
+      {  start.setprev(newnode);
+         newnode.setnext(start);
+         start=newnode;
+      }
+   }
+   void display()
+   {  Node temp=start;
+      if (start==null)
+          System.out.println("Nothing to display");
+      else
+      {  while (temp!=null)
+         {  System.out.print(temp.getinfo()+"\t");
+            temp=temp.getnext();
+         }
+      }
+   }
+   void del ()
+   {  if (start==null)
+         System.out.println("Empty list");
+      else if (start==last)
+      {  System.out.println("No duplicate node");
+         display();
+      }
+      else
+      {  Node temp=start;
+         Node tempp=start.getnext();
+         while (temp!=null)
+         {  tempp=temp.getnext();
+            while (tempp!=null)
+            {  if (temp.getinfo()==tempp.getinfo()&&tempp!=last)
+               {  System.out.println(tempp.getinfo()+" is repeated");
+                  tempp.getprev().setnext(tempp.getnext());
+                  tempp.getnext().setprev(tempp.getprev());
+               }
+               if (temp.getinfo()==tempp.getinfo()&&tempp==last)
+               {  System.out.println(tempp.getinfo()+" is repeated");
+                  last=last.getprev();
+                  last.setnext(null);
+               }
+                  tempp=tempp.getnext();
+            }
+            temp=temp.getnext(); 
+         }
+         display();
+      }
+   }
+}
+class Mmain
+{  public static void main (String args[])
+   {  List l=new List();
+      Scanner input=new Scanner (System.in);
+      int ans,in;
+      do
+      {  System.out.println("1.Push 2.Remove duplicate nodes 3.Display 4.Exit");
+         System.out.println("Enter your choice (1-4) = ");
+         ans=input.nextInt();
+         switch (ans)
+         {  case 1 : System.out.println("Enter info : ");
+                     in=input.nextInt();
+                     l.push(in);
+                     break;
+            case 2 : l.del();
+                     break;
+            case 3 : l.display();
+                     break;
+            case 4 : System.out.println("Terminating..");
+                     break;
+            default: System.out.println("Wrong choice");
+         }
+      }while (ans!=4);
+   }
+}

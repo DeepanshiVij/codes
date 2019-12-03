@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define size 10
+int main()
+{
+    int a[size],ele,i;
+    printf("\nEnter 10 integers : ");
+    for (i=0;i<size;i++)
+        scanf("%d",&a[i]);
+    printf("Enter element to be found = ");
+    scanf("%d",&ele);
+    for (i=0;i<size;i++)
+    {
+        if (a[i]==ele)
+        {
+            break;
+        }
+    }
+    if (i==10)
+        printf("%d not found",ele);
+    else
+        printf("%d found",ele);
+    return 0;
+}

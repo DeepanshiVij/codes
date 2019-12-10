@@ -1,0 +1,40 @@
+import java.util.*;
+class Odd
+{  String str;
+   Find (String s)
+   {  str=s;
+   }
+   String split (char chi)
+   {  String temp="";
+      String result="";
+      int s;
+      for (int i=0;i<str.length();i++)
+      {  char ch=str.charAt(i);
+         if (Character.isDigit(ch))
+            temp+=ch;
+         else
+         {   s=Integer.parseInt(temp);
+             if (s%2==1)
+             {  result+=Integer.toString(s);
+                result+=chi;
+             }
+             temp="";
+         }
+      }
+      s=Integer.parseInt(temp);
+      if (s%2==1)
+          result+=Integer.toString(s);
+      return (result);
+   }
+}
+class Calc
+{  public static void main (String args[])
+   {   Scanner input=new Scanner (System.in);
+       String s,result;
+       System.out.println("Enter sequence seperated by commas : ");
+       s=input.nextLine();
+       Odd f=new Odd (s);
+       result=f.split(',');
+       System.out.println("Result : "+result);
+   }
+}

@@ -1,0 +1,18 @@
+import java.util.*;
+class Sum
+{  public static void main (String args[])
+   {  int a,s,l;
+      Scanner input=new Scanner (System.in);
+      s=0;
+      l=0;
+      System.out.println("Enter number = ");
+      a=input.nextInt();
+      for (i=0;i<=3;i++)
+      {  l=0;
+         for (j=0;j<=i;j++)
+             l+=Math.pow(10,j)*a;
+         s+=l;
+      }
+      System.out.println("Sum = "+s);
+   }
+}

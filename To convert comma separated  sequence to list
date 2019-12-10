@@ -1,0 +1,32 @@
+import java.util.*;
+class Func
+{  private String str;
+   Func (string s)
+   {   str=s;
+   }
+   String split (char ch)
+   {  int l;
+      l=str.length();
+      String result;
+      result="(";
+      for (int i=0;i<l;i++)
+      {   if (i==0||str.charAt(i-1)==ch)
+              result.concat("'");
+          result.concat(charAt(i));
+          if (i==(l-1)||str.charAt(i+1)==ch)
+             result.concat("'");
+      }
+      result.concat(")");
+   }
+}
+class Mmain
+{  public static void main (String args[])
+   {  String fn,res;
+      Scanner input=new Scanner (System.in);
+      System.out.println("Enter string ");
+      fn=input.nextLine();
+      Func f=new Func (fn);
+      res=f.split(',');
+      System.out.println("List : "+res);
+   }
+}

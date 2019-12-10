@@ -1,0 +1,33 @@
+class Numbers
+{  private int ev_arr[2000];
+   void even_nos ()
+   {  int i,j,r,flag;
+      j=0;
+      for (i=1000;i<=3000;i++)
+      {  flag=0;
+         while (i)
+         { r=i%10;
+           if (r%2==1)
+           {  flag=1;
+              break;
+           }
+           i=i/2;
+         }
+         if (flag==0)
+             ev_arr[j++]=i;
+        }
+   }
+   void display()
+   {  int i,j;
+      j=ev_arr.length();
+      for (i=0;i<j;i++)
+          System.out.print(ev_arr[i]+"\t");
+   }
+}
+class Functn
+{  public static void main (String args[])
+   { Numbers a=new Numbers();
+     a.even_nos();
+     a.display();
+   }
+}

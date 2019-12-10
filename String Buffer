@@ -1,0 +1,25 @@
+import java.util.*;
+class Strbuffer
+{  public staic void main(String args[])
+   {  StringBuffer s1=new StringBuffer("anjelpriya");
+      char a = new char[5];
+      StringBuffer s2=new StringBuffer();
+      StringBuffer s3=new StringBuffer(5);
+      System.out.println(s3.length());
+      System.out.println(s3.capacity());
+      s1.ensureCapacity(8);
+      s1.setLength(4);
+      s1.setCharAt(2,'i');
+      System.out.println(s1);
+      System.out.println(s1.charAt(1));
+      s1.getChar(1,4,a,0);
+      for (int i=0,i<4;i++)
+          System.out.println(a[i]);
+      s2.append(s1);
+      System.out.println(s2);
+      s2.insert(2,"singh");
+      System.out.println(s2);
+      s2.reverse();
+      System.out.println(s2);
+   }
+}

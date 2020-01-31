@@ -1,0 +1,23 @@
+import java.util.*;
+class Main
+{   public static void main (String args[])
+    {  int a[],i,j,k,key;
+       a=new int [5];
+       Scanner input=new Scanner (System.in);
+       System.out.println("Enter elements : ");
+       for (i=0;i<5;i++)
+           a[i]=input.nextInt();
+        for (j=1;j<5;j++)
+        {  key=a[j];
+           i=j-1;
+           while (i>=0&&a[i]>key)
+           {   a[i+1]=a[i];
+               i--;
+            }
+            a[i+1]=key;
+            System.out.println("pass "+j);
+           for (k=0;k<5;k++)
+               System.out.println(a[k]+" ");
+        }
+    }
+}

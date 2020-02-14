@@ -1,0 +1,53 @@
+import java.util.*;
+class Max_min
+{   int min,max;
+    Max_min dac (int a[],int i,int j)
+    {   Max_min b=new Max_min();
+        int mid;
+        if (i==j)
+           b.max=b.min=a[i];
+        else if (i==j-1)
+           if (a[i]>a[j])
+           {   b.max=a[i];
+               b.min=a[j];
+           }
+           else
+           {   b.max=a[j];
+               b.min=a[i];
+           }
+        else
+         {  
+           mid=(i+j)/2;
+           Max_min c=new Max_min();
+           Max_min d=new Max_min();
+           c=dac(a,i,mid);
+           d=dac(a,(mid+1),j);
+           if (c.max>d.max)
+              b.max=c.max;
+           else
+              b.max=d.max;
+           if (c.min<d.min)
+              b.min=c.min;
+           else
+              b.min=d.min;}
+        return (b);
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		int arr[]=new int [10];
+		int i;
+		Scanner input=new Scanner(System.in);
+        System.out.println("Enter 10 elements : ");
+        for (i=0;i<10;i++)
+            arr[i]=input.nextInt();
+        Max_min a=new Max_min();
+        Max_min b=new Max_min();
+        a=b.dac(arr,0,9);
+        System.out.printf("\nMinimum element is %d", a.min); 
+        System.out.printf("\nMaximum element is %d", a.max); 
+  
+    } 
+	
+}

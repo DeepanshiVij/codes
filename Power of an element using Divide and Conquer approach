@@ -1,0 +1,32 @@
+import java.util.*;
+class dac
+{   int Power (int a,int n)
+    {   if (n==1)
+            return (a);
+        else
+        {   int mid,b,c;
+            mid=n/2;
+            b=Power(a,mid);
+            if (n%2==0)
+               c=b*b;
+            else
+               c=a*b*b;
+            return (c);
+        }
+    }
+}
+public class Main
+{   public static void main(String[] args) {
+		int a,n,ans;
+		Scanner input=new Scanner(System.in);
+        System.out.println("Enter base : ");
+        a=input.nextInt();
+        System.out.println("Enter power : ");
+        n=input.nextInt();
+        dac d=new dac();
+        ans=d.Power(a,n);
+        System.out.printf("\n%d to the power %d is %d",a,n,ans); 
+  
+    } 
+	
+}

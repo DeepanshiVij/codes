@@ -1,0 +1,7 @@
+ System.out.println("\nProduct of matrices A and  B : ");
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+                System.out.print(C[i][j] +" ");
+            System.out.println();
+        }
